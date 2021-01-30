@@ -1,14 +1,24 @@
-import Layout from './Layout/Layout';
+import { Component } from 'react';
 
+import Searchbar from './Searchbar/Searchbar';
+import ImageGallery from './ImageGallery/ImageGallery';
 import './App.css';
 
-function App() {
-  return (
-    <Layout>
-      <h1>Home Work #2.2</h1>
-      <div>Hello</div>
-    </Layout>
-  );
-}
+export default class App extends Component {
+  state = {
+    query: '',
+  };
 
-export default App;
+  handleSubmitSearchbar = query => {
+    this.setState({ query });
+  };
+
+  render() {
+    return (
+      <>
+        <Searchbar onSubmit={this.handleSubmitSearchbar} />
+        <ImageGallery query={this.state.query} />
+      </>
+    );
+  }
+}
